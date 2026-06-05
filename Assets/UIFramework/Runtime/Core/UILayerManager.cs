@@ -45,7 +45,7 @@ namespace UIFramework
             view.SetAsLastSibling();
 
             var canvas = view.GetComponent<Canvas>();
-            if (canvas != null && canvas.transform != layerRoot)
+            if (canvas != null)
             {
                 canvas.overrideSorting = true;
                 canvas.sortingOrder = AllocSortingOrder(layer);

@@ -27,12 +27,5 @@ namespace UIFramework
             }
         }
 
-        private void Awake()
-        {
-            if (GetComponent<RectTransform>() == null)
-            {
-                gameObject.AddComponent<RectTransform>();
-            }
-        }
     }
 }

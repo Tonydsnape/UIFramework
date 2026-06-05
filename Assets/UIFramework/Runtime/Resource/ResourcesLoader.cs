@@ -12,10 +12,14 @@ namespace UIFramework
         public async Task<GameObject> LoadPrefabAsync(string key)
         {
             var request = Resources.LoadAsync<GameObject>(key);
-            while (!request.isDone)
+            if (request.isDone)
             {
-                await Task.Yield();
+                return request.asset as GameObject;
             }
+
+            var completion = new TaskCompletionSource<bool>();
+            request.completed += _ => completion.TrySetResult(true);
+            await completion.Task;
 
             return request.asset as GameObject;
         }
